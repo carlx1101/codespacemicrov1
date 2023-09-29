@@ -20,6 +20,9 @@ return new class extends Migration
             // 0 -> Student, 1 -> Tutor (Individual), 2 -> School, 3 -> Admin 
             $table->tinyInteger('role')->default(0);
             
+            // Socialite 
+            $table->string('google_id');
+            
             $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();

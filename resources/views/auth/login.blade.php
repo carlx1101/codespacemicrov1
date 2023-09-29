@@ -39,6 +39,10 @@
                     </a>
                 @endif
 
+                <a href="{{route('google.redirect')}}">
+                    <span>Login with Google</span>                
+                </a>
+
                 <x-button class="ml-4">
                     {{ __('Log in') }}
                 </x-button>
