@@ -15,6 +15,12 @@ class LoginResponse implements LoginResponseContract
         if (auth()->user()->role == 'admin'){
             $home = "/admin-dashboard";
         }
+        else if(auth()->user()->role == 'tutor'){
+            $home = "/tutor-dashboard";
+        }
+        else if(auth()->user()->role == 'university'){
+            $home = "/university-dashboard";
+        }
         return redirect()->intended($home);
     }
 }
