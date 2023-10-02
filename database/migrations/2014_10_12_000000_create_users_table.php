@@ -21,7 +21,7 @@ return new class extends Migration
             $table->tinyInteger('role')->default(0);
             
             // Socialite 
-            $table->string('google_id');
+            $table->string('google_id')->nullable();
             
             $table->string('password');
             $table->rememberToken();

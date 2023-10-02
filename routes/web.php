@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\Course\CourseController;
+use App\Http\Controllers\Course\LessonController;
+use App\Http\Controllers\Course\SectionController;
 use App\Http\Controllers\Auth\GoogleLoginController;
 
 /*
@@ -14,9 +18,13 @@ use App\Http\Controllers\Auth\GoogleLoginController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [PageController::class, 'welcome']);
+Route::get('/courses/{id}',  [PageController::class, 'courseOverview'])->name('course.overview');
+
 
 Route::middleware([
     'auth:sanctum','user-access:student', config('jetstream.auth_session'), 'verified',
@@ -35,7 +43,13 @@ Route::middleware([
 Route::middleware([
     'auth:sanctum','user-access:school', config('jetstream.auth_session'), 'verified',
 ])->group(function () {
-    Route::get('/school-dashboard', function () { return view('dashboard-school'); })->name('school.dashboard');
+    Route::get('/school-dashboard', function () { return view('school.dashboard-school'); })->name('school.dashboard');
+    Route::resource('courses',  CourseController::class);
+    Route::patch('/courses/{id}/update-status', [CourseController::class, 'updateStatus'])->name('courses.updateStatus');
+    Route::get('courses/{courseId}/sections', [SectionController::class, 'index'])->name('sections.index');
+    Route::post('courses/{courseId}/sections', [SectionController::class, 'store'])->name('sections.store');
+    Route::post('sections/{section}/lessons', [LessonController::class, 'store'])->name('lessons.store');
+
 });
 
 Route::middleware([
