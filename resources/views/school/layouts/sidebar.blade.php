@@ -59,7 +59,7 @@
 
               <div id="navbarVerticalMenuDashboards" class="nav-collapse collapse" data-bs-parent="#navbarVerticalMenu">
                 <a class="nav-link active" href="{{route('courses.index')}}">Manage Courses</a>
-                <a class="nav-link " href="{{route('courses.create')}}">Add Couse</a>
+                <a class="nav-link " href="{{route('course.create')}}">Add Couse</a>
               </div>
             </div>
             <!-- End Collapse -->

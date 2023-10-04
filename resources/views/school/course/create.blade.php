@@ -525,7 +525,7 @@ data-hs-step-form-options='{
     
       <!-- Form -->
       <div class="row mb-4">
-        <label for="price" class="col-sm-3 col-form-label form-label">Pricing</label>
+        <label for="price" class="col-sm-3 col-form-label form-label">Original Price</label>
 
         <div class="col-sm-9">
           <div class="input-group">
@@ -684,6 +684,20 @@ data-hs-step-form-options='{
       </div>
       <!-- End Form -->
 
+
+        <!-- Form -->
+        <div class="row mb-4">
+          <label for="discount_price" class="col-sm-3 col-form-label form-label">Discounted Price</label>
+  
+          <div class="col-sm-9">
+            <div class="input-group">
+              <input type="number" class="form-control" id="discount_price" name="discounted_price" >
+
+            </div>
+          </div>
+        </div>
+        <!-- End Form -->
+        <p id="discount_percentage">Discount: 0%</p>
 
     <!-- Footer -->
     <div class="d-sm-flex align-items-center mt-auto">
@@ -1744,10 +1758,6 @@ data-hs-step-form-options='{
 
           console.log("FormData:", formData);
 
-
-
-
-
           
          
           // Make an AJAX request
@@ -1773,6 +1783,31 @@ data-hs-step-form-options='{
   });
 </script>
 
+<script>
+  // Get the input fields
+  const originalPriceInput = document.getElementById("price");
+  const discountedPriceInput = document.getElementById("discount_price");
+
+  // Get the p tag for displaying the discount percentage
+  const discountPercentageElement = document.getElementById("discount_percentage");
+
+  // Add an event listener to both input fields to calculate the discount
+  originalPriceInput.addEventListener("input", updateDiscountPercentage);
+  discountedPriceInput.addEventListener("input", updateDiscountPercentage);
+
+  // Function to update the discount percentage
+  function updateDiscountPercentage() {
+    const originalPrice = parseFloat(originalPriceInput.value) || 0;
+    const discountedPrice = parseFloat(discountedPriceInput.value) || 0;
+
+    if (originalPrice > 0) {
+      const discount = ((originalPrice - discountedPrice) / originalPrice) * 100;
+      discountPercentageElement.textContent = `Discount: ${discount.toFixed(2)}%`;
+    } else {
+      discountPercentageElement.textContent = "Discount: 0%";
+    }
+  }
+</script>
 
   <!-- End Style Switcher JS -->
 </body>

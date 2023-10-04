@@ -51,6 +51,8 @@ class CourseSeeder extends Seeder
                 'title' => 'Installing PHP',
                 'description' => 'This lesson covers how to install PHP on your system.',
                 'lesson_type' => 'video',
+                'is_preview' => 'checked',
+                
             ]);
 
             Video::create([
@@ -71,6 +73,8 @@ class CourseSeeder extends Seeder
                 'title' => 'Variables in PHP',
                 'description' => 'An introduction to variables in PHP.',
                 'lesson_type' => 'video',
+                'is_preview' => 'checked',
+
 
             ]);
 

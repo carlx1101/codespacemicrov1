@@ -24,6 +24,7 @@ class CourseController extends Controller
      */
     public function create()
     {
+   
         return view('school.course.create');
         
     }
@@ -66,6 +67,7 @@ class CourseController extends Controller
         $course->prerequisites = $prerequisites; // Assign the JSON string
         $course->target_audiences = $targetAudiences; // Assign the JSON string
         $course->price = $request->input('price');
+        $course->discounted_price = $request->input('discounted_price');
         $course->currency = $request->input('currency');
         $course->welcome_message = $request->input('welcome_message');
         $course->congratulations_message = $request->input('congratulations_message');
@@ -120,7 +122,9 @@ class CourseController extends Controller
         $course->promo_video_path = json_encode($promoVideoPaths);
         $course->save();
 
-        return view('school.course.index');
+
+
+        return redirect()->route('courses.index')->with('success','Course created successfully.');
     }
 
     /**

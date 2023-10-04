@@ -18,7 +18,9 @@ return new class extends Migration
             // Lesson Descriptions 
             $table->string('title')->nullable();
             $table->string('description')->nullable();
-            $table->string('lesson_type');
+            $table->string('lesson_type')->nullable();
+            $table->string('is_preview')->nullable();
+            
             $table->foreign('section_id')->references('id')->on('sections')->onDelete('cascade');
             $table->timestamps();
         });

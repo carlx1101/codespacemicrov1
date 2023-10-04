@@ -33,6 +33,8 @@ return new class extends Migration
             // Price 
             $table->decimal("price", 10, 2)->nullable();
             $table->string("currency")->nullable();
+            $table->decimal("discounted_price", 10, 2)->nullable();
+            // $table->string("is_free")->boolean();
             
 
             

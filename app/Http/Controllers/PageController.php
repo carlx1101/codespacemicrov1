@@ -37,4 +37,8 @@ class PageController extends Controller
 
     }
 
+    public function blog(){
+        
+    }
+
 }

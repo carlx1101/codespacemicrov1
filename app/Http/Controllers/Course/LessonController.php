@@ -18,6 +18,7 @@ class LessonController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'lesson_type' => $request->input('lesson_type'),
+            'is_preview' => $request->input('is_preview'),
         ]);
     
         // Save the Lesson to the section

@@ -777,7 +777,7 @@
                 </div>
                 <!-- End Dropdown -->
 
-                <a class="dropdown-item" href="#">Manage team</a>
+                {{-- <a class="dropdown-item" href="#">Manage team</a> --}}
 
                 <div class="dropdown-divider"></div>
 
