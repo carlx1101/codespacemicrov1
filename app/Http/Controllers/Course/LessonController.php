@@ -13,6 +13,7 @@ class LessonController extends Controller
 {
     public function store(Request $request, Section $section)
     {
+       
         // Create a new Lesson
         $lesson = new Lesson([
             'title' => $request->input('title'),
@@ -46,6 +47,6 @@ class LessonController extends Controller
             $lesson->article()->save($article);
         }
     
-        return redirect()->route('sections.index', $section)->with('success', 'Lesson created successfully');
+        return redirect()->back();
     }
 }

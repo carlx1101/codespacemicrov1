@@ -19,7 +19,7 @@ class CourseSeeder extends Seeder
         Course::create([
             'title' => 'Introduction to PHP',
             'subtitle' => 'PHP is a widely-used, server-side scripting language for web development, known for its versatility, ease of use, and robust community support.            ',
-            'description' => null,
+            'description' => 'Are you ready to dive into the world of web development and unleash the power of server-side scripting?',
             'category' => 'IT & Software',
             'subcategory' => 'Programming',
             'photo_path' => '["course_photos\/photo_651231025dd32.png"]',
@@ -28,6 +28,7 @@ class CourseSeeder extends Seeder
             'prerequisites' => '["Basic HTML and CSS knowledge.","Familiarity with programming concepts.","A text editor for coding.",null]',
             'target_audiences' => '["Web developers seeking server-side scripting skills.","Programmers interested in web application development.","Students pursuing web development careers."]',
             'price' => '98.00',
+            'discounted_price' => '90.00',
             'currency' => 'USD',
             'welcome_message' => null,
             'congratulations_message' => null,

@@ -228,9 +228,15 @@
                               @endforeach
                           </ul>
                       @endif
-                      <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addLessonModal{{$section->id}}">
+                      {{-- <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#addLessonModal{{$section->id}}">
                          New Lesson
-                      </button>
+                      </button> --}}
+
+                      <!-- Inside your loop -->
+                    <button type="button" class="btn btn-outline-primary open-lesson-modal" data-bs-toggle="modal" data-bs-target="#addLessonModal" data-section-id="{{$section->id}}">
+                      New Lesson
+                    </button>
+
 
                     </div>
                   </div>
@@ -239,123 +245,7 @@
               </div>
               <!-- End Accordion -->
        
-                <!-- lesson -->
-              <div id="addLessonModal{{$section->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-lg	" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalCenterTitle">Lesson</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-              
-                        <form method="POST" action="{{ route('lessons.store',$section->id) }}">
-                          @csrf
- 
-                          <div class="row">
-                            <div class="mb-3 " style="text-align: left">
-                              <label class="form-label" for="title">Title</label>
-                              <input type="text" id="title" class="form-control" name="title" placeholder="Title">
-                            </div>
-                          </div>
-                
-                          <div class="row">
-                            <div class="mb-3 " style="text-align: left">                          
-                            <label class="form-label" for="description">Description</label>
-                          <input type="text" id="description" name="description" class="form-control" placeholder="Describe what student will learn in this lesson">
-                        </div>
-                          </div>
-                
-            
-                            <div class="row mb-2">
-                              <div class="mb-2 " style="text-align: left">        
-                              <label class="form-label" for="description">Lesson Type</label>
-                            </div>
-                     
-                            <div class="col-sm mb-2 mb-sm-0">
-                              <!-- Form Radio -->
-                              <label class="form-control" for="formControlRadioEg1">
-                                <span class="form-check">
-                                  <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg1" value="video">
-                                  <span class="form-check-label">Video</span>
-                                </span>
-                              </label>
-                              <!-- End Form Radio -->
-                            </div>
-                          
-                            <div class="col-sm mb-2 mb-sm-0">
-                              <!-- Form Radio -->
-                              <label class="form-control" for="formControlRadioEg2">
-                                <span class="form-check">
-                                  <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="article">
-                                  <span class="form-check-label">Article </span>
-                                </span>
-                              </label>
-                              <!-- End Form Radio -->
-                            </div>
-                  
-                            <div class="col-sm mb-2 mb-sm-0">
-                              <!-- Form Radio -->
-                              <label class="form-control" for="formControlRadioEg2">
-                                <span class="form-check">
-                                  <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="assessment">
-                                  <span class="form-check-label">Assessmemt </span>
-                                </span>
-                              </label>
-                              <!-- End Form Radio -->
-                            </div>
-                  
-
-                            <br>
-                            <div class="row mt-2">
-                              <div class="mb-3 " id="videoFields" style="display: none; text-align: left;">
-                                <label class="form-label" for="video_url">Video</label>
-                                <input type="text" id="title" class="form-control"  name="video_url" id="video_url">
-                              </div>
-                            </div>
-
-                       
-                          
-                            <div class="row mt-2">
-                              <div class="mb-3 " id="articleFields" style="display: none; text-align: left;">
-                              <!-- Article-specific fields go here -->
-                              <label for="article_content">Article Content</label>
-
-                              <textarea name="article_content" id="article_content"></textarea>
-                              <script>
-                                      CKEDITOR.replace( 'article_content' );
-                              </script>
-
-                            </div>
-                            </div>
-
-
-
-                          
-                          <div class="form-group" id="assessmentFields" style="display: none;">
-                              <!-- Assessment-specific fields go here -->
-                              <label for="assessment_questions">Assessment Questions</label>
-                              <textarea name="assessment_questions" id="assessment_questions"></textarea>
-                          </div>
-                          
-
-                   
-                            </div>
-                            <!-- End Row -->
-      
-              
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
-                      <button type="submit" class="btn btn-primary">Save changes</button>
-                    </div>
-                  </form>
-              
-                  </div>
-                </div>
-              </div>
-              <!-- End Modal -->
-
+   
 
 
               @endforeach
@@ -424,6 +314,124 @@
   <!-- End Modal -->
 
 
+
+    <!-- lesson -->
+    <div id="addLessonModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg	" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Lesson</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+         
+            <form method="POST" action="">
+              @csrf
+
+              <div class="row">
+                <div class="mb-3 " style="text-align: left">
+                  <label class="form-label" for="title">Title</label>
+                  <input type="text" id="title" class="form-control" name="title" placeholder="Title">
+                </div>
+              </div>
+    
+              <div class="row">
+                <div class="mb-3 " style="text-align: left">                          
+                <label class="form-label" for="description">Description</label>
+              <input type="text" id="description" name="description" class="form-control" placeholder="Describe what student will learn in this lesson">
+            </div>
+              </div>
+    
+
+                <div class="row mb-2">
+                  <div class="mb-2 " style="text-align: left">        
+                  <label class="form-label" for="description">Lesson Type</label>
+                </div>
+          
+                <div class="col-sm mb-2 mb-sm-0">
+                  <!-- Form Radio -->
+                  <label class="form-control" for="formControlRadioEg1">
+                    <span class="form-check">
+                      <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg1" value="video">
+                      <span class="form-check-label">Video</span>
+                    </span>
+                  </label>
+                  <!-- End Form Radio -->
+                </div>
+              
+                <div class="col-sm mb-2 mb-sm-0">
+                  <!-- Form Radio -->
+                  <label class="form-control" for="formControlRadioEg2">
+                    <span class="form-check">
+                      <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="article">
+                      <span class="form-check-label">Article </span>
+                    </span>
+                  </label>
+                  <!-- End Form Radio -->
+                </div>
+      
+                <div class="col-sm mb-2 mb-sm-0">
+                  <!-- Form Radio -->
+                  <label class="form-control" for="formControlRadioEg2">
+                    <span class="form-check">
+                      <input type="radio" class="form-check-input" name="lesson_type" id="formControlRadioEg2" value="assessment">
+                      <span class="form-check-label">Assessmemt </span>
+                    </span>
+                  </label>
+                  <!-- End Form Radio -->
+                </div>
+      
+
+                <br>
+                <div class="row mt-2">
+                  <div class="mb-3 " id="videoFields" style="display: none; text-align: left;">
+                    <label class="form-label" for="video_url">Video</label>
+                    <input type="text" id="title" class="form-control"  name="video_url" id="video_url">
+                  </div>
+                </div>
+
+            
+              
+                <div class="row mt-2">
+                  <div class="mb-3 " id="articleFields" style="display: none; text-align: left;">
+                  <!-- Article-specific fields go here -->
+                  <label for="article_content">Article Content</label>
+
+                  <textarea name="article_content" id="article_content"></textarea>
+                  <script>
+                          CKEDITOR.replace( 'article_content' );
+                  </script>
+
+                </div>
+                </div>
+
+
+
+              
+              <div class="form-group" id="assessmentFields" style="display: none;">
+                  <!-- Assessment-specific fields go here -->
+                  <label for="assessment_questions">Assessment Questions</label>
+                  <textarea name="assessment_questions" id="assessment_questions"></textarea>
+              </div>
+              
+
+        
+                </div>
+                <!-- End Row -->
+
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-white" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </form>
+  
+      </div>
+    </div>
+  </div>
+  <!-- End Modal -->
 
   
 
@@ -653,6 +661,27 @@
         });
     });
     </script>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const openLessonModalButtons = document.querySelectorAll('.open-lesson-modal');
+    const modalForm = document.querySelector('#addLessonModal form');
+
+    openLessonModalButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        const sectionId = this.getAttribute('data-section-id');
+modalForm.setAttribute('action', "{{ route('lessons.store', ['sectionId']) }}".replace('sectionId', sectionId));
+
+
+
+
+
+      });
+    });
+  });
+</script>
+
     
 </body>
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserAccess
@@ -17,6 +18,7 @@ class UserAccess
     {
         // return $next($request);
         if(auth()->user()->role == $userType){
+
             return $next($request);
         }
           

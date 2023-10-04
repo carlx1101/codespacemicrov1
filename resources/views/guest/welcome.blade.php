@@ -542,6 +542,7 @@
   <!-- ========== END MAIN CONTENT ========== -->
 
   <!-- ========== FOOTER ========== -->
+  @include('guest.layouts.footer')
 
   
   <!-- ========== END FOOTER ========== -->

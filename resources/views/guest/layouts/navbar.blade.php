@@ -318,10 +318,11 @@
         @endauth 
         @else 
         <div class="d-inline-block ml-auto m-2">
-            <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup">
-              <span class="d-none d-lg-inline-block">Get started</span>
-              <i class="bi-person-fill d-lg-none"></i>
-            </button>
+          <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarSignup" aria-controls="offcanvasNavbarSignup" onclick="window.location.href = '{{route('login')}}'">
+            <span class="d-none d-lg-inline-block">Get Started</span>
+            <i class="bi-person-fill d-lg-none"></i>
+        </button>
+        
           </div>
         </div>
         @endif
