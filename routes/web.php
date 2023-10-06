@@ -57,6 +57,8 @@ Route::middleware([
     Route::get('courses/{courseId}/sections', [SectionController::class, 'index'])->name('sections.index');
     Route::post('courses/{courseId}/sections', [SectionController::class, 'store'])->name('sections.store');
     Route::post('sections/{section}/lessons', [LessonController::class, 'store'])->name('lessons.store');
+    Route::delete('sections/{section}/lessons/{lesson}', [LessonController::class, 'destroy'])->name('lessons.destroy');
+    Route::delete('courses/{courseId}/sections/{sectionId}', [SectionController::class, 'destroy'])->name('sections.destroy');
 });
 
 Route::middleware([

@@ -220,10 +220,33 @@
                                   <!-- Display other lesson information here -->
                                   <!-- Card -->
                                   <div class="card mb-1" style="text-align: left;">
-                                    <div class="card-body">
-                                      {{ $lesson->title }}
+                                    <div class="card-body d-flex justify-content-between">
+                                      <div>
+                                        <h5>
+                                          @if( $lesson->lesson_type == "video")
+                                          <i class="bi bi-play-circle-fill text-primary" ></i> 
+                                          @elseif ( $lesson->lesson_type == "article")
+                                          <i class="bi bi-file-richtext-fill text-primary"></i>
+                                          @else 
+                                          @endif
+                                          
+                                          {{ $lesson->title }}
+                                        </h5>
+                                        <p>{{ $lesson->description }}</p>
+                                      </div>
+
+                                      <div class="d-flex justify-content-between">
+                                        
+                                        <form action="{{ route('lessons.destroy', ['section' => $section, 'lesson' => $lesson]) }}" method="POST">
+                                          <button type="button" class="btn btn-outline-primary">Edit</button>
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                        </form>
                                     </div>
-                                  </div>
+                                    
+                                    </div>
+                                </div>
                                   <!-- End Card -->
                               @endforeach
                           </ul>
@@ -233,11 +256,40 @@
                       </button> --}}
 
                       <!-- Inside your loop -->
-                    <button type="button" class="btn btn-outline-primary open-lesson-modal" data-bs-toggle="modal" data-bs-target="#addLessonModal" data-section-id="{{$section->id}}">
+                    {{-- <button type="button" class="btn btn-outline-primary open-lesson-modal" data-bs-toggle="modal" data-bs-target="#addLessonModal" data-section-id="{{$section->id}}">
                       New Lesson
                     </button>
 
+                    <form action="}" method="POST">
+                      <button type="button" class="btn btn-outline-primary">Edit</button>
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    </form> --}}
 
+
+
+                    <div class="btn-group" role="group">
+                      <!-- New Lesson Button -->
+                    <button type="button" class="btn btn-outline-primary open-lesson-modal mx-1" data-bs-toggle="modal" data-bs-target="#addLessonModal" data-section-id="{{$section->id}}">
+                      New Lesson
+                    </button>
+
+                      <!-- Edit Button -->
+                      <form action="" method="POST">
+                          @csrf
+                          <button type="submit" class="btn btn-outline-primary  ">Edit</button>
+                      </form>
+                  
+                      <!-- Delete Button -->
+                      <form action="{{ route('sections.destroy', ['courseId' => $course->id, 'sectionId' => $section->id]) }}" method="POST">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-outline-danger mx-1 ">Delete</button>
+                      </form>
+                  </div>
+                  
+                  
                     </div>
                   </div>
                 </div>
@@ -672,9 +724,6 @@
       button.addEventListener('click', function () {
         const sectionId = this.getAttribute('data-section-id');
 modalForm.setAttribute('action', "{{ route('lessons.store', ['sectionId']) }}".replace('sectionId', sectionId));
-
-
-
 
 
       });

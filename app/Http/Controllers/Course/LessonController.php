@@ -49,4 +49,13 @@ class LessonController extends Controller
     
         return redirect()->back();
     }
+
+    public function destroy(Section $section, Lesson $lesson)
+    {
+        $lesson->delete();
+
+        return redirect()->back();
+    }
+
+    
 }

@@ -35,4 +35,23 @@ class SectionController extends Controller
 
         return redirect()->route('sections.index', ['courseId' => $courseId])->with('success', 'Section created successfully');
     }
+
+    public function destroy($courseId, $sectionId)
+    {
+        // Find the course by ID
+        $course = Course::findOrFail($courseId);
+
+        // Find the section by ID within the given course
+        $section = $course->sections()->findOrFail($sectionId);
+
+        // Delete all the lessons associated with the section
+        $section->lessons()->delete();
+
+        // Delete the section
+        $section->delete();
+        
+        return redirect()->route('sections.index', ['courseId' => $courseId])->with('success', 'Section and associated lessons deleted successfully');
+    }
+
+
 }
