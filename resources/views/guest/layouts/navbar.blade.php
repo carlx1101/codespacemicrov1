@@ -257,11 +257,19 @@
           <!-- End Mega Menu -->
         </li>
 
-        <div class="dropdown">
+           
+        <!-- Shopping Cart -->
+        <button type="button" class="btn btn-ghost-secondary btn-sm btn-icon" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbarEmptyShoppingCart" aria-controls="offcanvasNavbarEmptyShoppingCart">
+          <i class="bi-basket"></i>
+        </button>
+        <!-- End Shopping Cart -->
+        
+        <div class="dropdown mx-2">
                 <a href="#" id="navbarShoppingCartDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
                 <img class="avatar avatar-xs avatar-circle" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
                 </a>
 
+                
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarShoppingCartDropdown" style="min-width: 16rem;">
               <a class="d-flex align-items-center p-2" href="#">
                 <div class="flex-shrink-0">

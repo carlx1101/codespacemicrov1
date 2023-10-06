@@ -132,10 +132,34 @@
                       <span class="text-muted"><del> {{ isset($course->discounted_price) ? $course->price : '' }}</del></span>
                     </div>
 
+
+          
+
+
+                  @if (!$cartItem) {{-- Check if there's no cart item for this course and student --}}
+                  <form method="POST" action="{{ route('cart.add', ['courseId' => $course->id]) }}">
+                      @csrf
+                      <button type="submit" class="btn btn-block btn-outline-primary">Add to Cart</button>
+                  </form>
+                  @else
+                  <form method="POST" action="{{ route('cart.remove', ['cartId' => $cartItem->id]) }}">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-block btn-danger">Remove from Cart</button>
+                  </form>
+                  @endif
+                  
+
+                  
+
+                  
                     <div class="d-grid mb-2">
                       <a class="btn btn-primary btn-transition" href="#">Buy now</a>
                     </div>
 
+    
+                   
+                    
                     <div class="text-center mb-4">
                       <p class="card-text small">30-day money-back guarantee</p>
                     </div>
@@ -1441,6 +1465,33 @@
      }'>
     <i class="bi-chevron-up"></i>
   </a>
+
+
+    <!-- Offcanvas Search -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbarEmptyShoppingCart">
+      <div class="offcanvas-header justify-content-end border-0 pb-0">
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+  
+      <div class="offcanvas-body">
+        <div class="text-center">
+          <div class="mb-5">
+            <img class="avatar avatar-xl avatar-4x3" src="../assets/svg/illustrations/oc-empty-cart.svg" alt="SVG">
+          </div>
+  
+          
+          @if ($cartItems->isEmpty())
+          <div class="mb-5">
+              <h3>Your cart is currently empty</h3>
+              <p>Before proceeding to checkout, you must add some products to your shopping cart. You will find a lot of interesting products on our "Shop" page.</p>
+          </div>
+          @else
+          <h3>Your cart is currently not empty</h3>
+          @endif 
+          <a class="btn btn-primary btn-transition rounded-pill px-6" href="../demo-shop/index.html">Start shopping</a>
+        </div>
+      </div>
+    </div>
   <!-- ========== END SECONDARY CONTENTS ========== -->
 
   <!-- JS Global Compulsory  -->

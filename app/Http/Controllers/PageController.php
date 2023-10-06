@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PageController extends Controller
 {
@@ -33,7 +35,16 @@ class PageController extends Controller
         })->count();
 
 
-        return view('guest.course-overview', ['course' => $course,'totalLessonCount' => $totalLessonCount]);
+        $cartItem = Cart::where('course_id', $course->id)
+        ->where('student_id', auth()->user()->id)
+        ->first();
+
+
+        $studentId = Auth::id();
+        $cartItems = Cart::where('student_id', $studentId)->get();
+
+        
+        return view('guest.course-overview', ['course' => $course,'totalLessonCount' => $totalLessonCount, 'cartItem' =>  $cartItem, 'cartItems' => $cartItems]);
 
     }
 

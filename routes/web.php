@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\Course\CourseController;
 use App\Http\Controllers\Course\LessonController;
@@ -32,6 +33,9 @@ Route::middleware([
     Route::get('/student-dashboard', function () {
         return view('dashboard');
     })->name('student.dashboard');
+    Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.view');
+    Route::post('/cart/add/{courseId}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::delete('/cart/remove/{cartId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 });
 
 
